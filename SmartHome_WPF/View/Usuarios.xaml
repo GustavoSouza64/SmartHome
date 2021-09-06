@@ -1,0 +1,170 @@
+﻿<Window x:Class="SmartHome_WPF.View.Usuarios"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:viewModels="clr-namespace:SmartHome_WPF.ViewModel"
+        xmlns:BindingSenha="clr-namespace:SmartHome_WPF.Auxiliares"
+        xmlns:local="clr-namespace:SmartHome_WPF.View"
+        mc:Ignorable="d" Height="600" Width="480" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Title="Smart Home"
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+    <Window.DataContext>
+        <viewModels:UsuarioViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Tela-->
+            <Border CornerRadius="20" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#00B0F0" Offset="0.0"/>
+
+                        <GradientStop Color="#00B0F0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!--Grid Imagem/Logo-->
+
+            <Image Source="blue_logo.png" HorizontalAlignment="Center" Width="100" Margin="24,25,356,5"/>
+            <TextBlock Text="Cadastrar Usuário" 
+                           FontWeight="Light"
+                           FontSize="28"
+                           FontFamily="Helvetica"
+                           Foreground="White"
+                           HorizontalAlignment="Center" Margin="124,42,148,478" Grid.RowSpan="2"/>
+
+            <!--Grid Usuário/Senha-->
+            <StackPanel Grid.Row="1">
+                <!--Usuário-->
+                <TextBlock Text="Nome usuário" Foreground="White" FontFamily="Segoe UI Black" FontSize="15" Height="22" Margin="115,50,104,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBox FontFamily="Helvetica"
+                         FontWeight="Light"
+                         Text="{Binding Path=UsuarioModel.Nome_Usuario, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextWrapping="Wrap"
+                         FontSize="22"
+                         Foreground="White"
+                         HorizontalAlignment="Center"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.9"
+                         Height="25"
+                         Margin="113,0,0,0" 
+                         />
+                    <iconPacks:PackIconMaterial    Kind="Account"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.6"/>
+
+                <TextBlock Text="Login" Foreground="White" FontFamily="Segoe UI Black" FontSize="15" Height="22" Margin="115,30,104,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBox FontFamily="Helvetica"
+                         FontWeight="Light"
+                         Text="{Binding Path=UsuarioModel.Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         TextWrapping="Wrap"
+                         FontSize="22"
+                         Foreground="White"
+                         HorizontalAlignment="Center"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.9"
+                         Height="25"
+                         Margin="113,0,0,0" 
+                         />
+                    <iconPacks:PackIconMaterial    Kind="Account"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.6"/>
+
+                <TextBlock Text="Senha" Foreground="White" FontFamily="Segoe UI Black" FontSize="15" Height="22" Margin="115,30,104,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox BindingSenha:BindingSenha.Attach="True" BindingSenha:BindingSenha.Password="{Binding UsuarioModel.Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontFamily="Helvetica"
+                         FontWeight="Light"
+                         FontSize="22"
+                         Foreground="White"
+                         HorizontalAlignment="Center"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.9"
+                         Height="25"
+                         Margin="113,0,0,0" 
+                         />
+                    <iconPacks:PackIconMaterial    Kind="Key"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.6"/>
+
+                <TextBlock Text="Confirmar senha" Foreground="White" FontFamily="Segoe UI Black" FontSize="15" Height="22" Margin="115,30,104,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox 
+                        BindingSenha:BindingSenha.Attach="True" 
+                        BindingSenha:BindingSenha.Password="{Binding UsuarioModel.ConfirmaSenha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                         FontFamily="Helvetica"
+                         FontWeight="Light"
+                         FontSize="22"
+                         Foreground="White"
+                         HorizontalAlignment="Center"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.9"
+                         Height="25"
+                         Margin="113,0,0,0" 
+                         />
+                    <iconPacks:PackIconMaterial    Kind="Key"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                    Height="2"
+                    Background="White"
+                    Opacity="0.6"/>
+
+                <!--Senha-->
+
+                <!--Botões acesso e saída-->
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <Button x:Name="CadastrarButton"  Command="{Binding ButtonsCadastrarUsuario}" Content="Cadastrar"  CommandParameter="Cadastrar" Style="{DynamicResource LoginButton}" Width="100" Height="40" Margin="113,0,55,0"/>
+                    <Button x:Name="VoltarCadastroButton"  Command="{Binding Button}" Content="Voltar" Click="VoltarCadastroButton_Click" CommandParameter="Voltar"  Style="{DynamicResource LoginButton}"  Width="100" Height="40"/>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

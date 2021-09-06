@@ -1,0 +1,221 @@
+﻿<Window x:Class="SmartHome_WPF.View.Funcionalidades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHome_WPF"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
+        xmlns:Primitives="clr-namespace:System.Windows.Controls.DataVisualization.Charting.Primitives;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d" 
+        Height="700" 
+        Width="1224" 
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="Funcionalidades"
+        MouseDown="Window_OnMouseDown"
+        Background="#eeeeee">
+    <Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="238"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" Background="#eeeeee" Grid.ColumnSpan="2" Margin="236,0,2,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="21*"/>
+                    <RowDefinition Height="206*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="154*"/>
+                    <ColumnDefinition Width="154*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Width="130" Height="15" >
+                    <iconPacks:PackIconMaterial Kind="ViewDashboard" Foreground="#FF00B0F0" VerticalAlignment="Center" Height="36" Margin="-146,-26,0,5" Width="30"/>
+                    <TextBlock HorizontalAlignment="Left" Text="FUNCIONALIDADES" Foreground="#FF00B0F0" FontSize="30" Margin="-102,-32,-66,-3" Width="298"/>
+                </Grid>
+
+                <Grid Grid.Column="0" Grid.Row="1" Margin="0,5,0,1">
+                    <Rectangle VerticalAlignment="Top" Height="518"  Margin="20,40,0,0" Fill="White" RadiusX="10" RadiusY="10"/>
+                    <DataGrid 
+                        VerticalAlignment="Top" 
+                        x:Name="rtglConsumoAtual" 
+                        Style="{DynamicResource SmartDataGrid}"
+                        Height="450"  
+                        Margin="35,81,20,0"
+                        SelectedIndex="{Binding SelectedFunc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding Comodos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedUserRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Binding="{Binding NomeComodo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15" FontFamily="Segoe Ui Black" Foreground="#FF00B0F0">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Nome" FontWeight="Bold" FontFamily="Segoe Ui Black" Foreground="#FF00B0F0"/>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Height="150" Margin="20,20,20,0" VerticalAlignment="Top" HorizontalAlignment="left" Width="292" >
+                        <TextBlock HorizontalAlignment="Left" Text="Cômodos" FontFamily="Segoe Ui Black" Foreground="#00B0F0" FontSize="18" Margin="28,31,0,100" Width="124"/>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="1" Margin="0,5,0,1">
+                    <Rectangle VerticalAlignment="Top" Height="518"  Margin="10,40,10,0" Fill="White" RadiusX="10" RadiusY="10"/>
+                    <DataGrid 
+                        VerticalAlignment="Top"
+                        Height="450"  
+                        Margin="23,81,32,0"
+                        Style="{DynamicResource SmartDataGrid}"
+                        ItemsSource="{Binding Funcionalidades, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectedItem="{Binding SelectedFunc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Binding="{Binding NomeFuncionalidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15" FontFamily="Segoe Ui Black" Foreground="#FF00B0F0">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Nome" FontWeight="Bold" FontFamily="Segoe Ui Black" Foreground="#FF00B0F0"/>
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button 
+                                        x:Name="ExecuteButton" 
+                                        Margin="5,5,5,5" 
+                                        Background="#FF00B0F0" 
+                                        Height="30" 
+                                        BorderBrush="White" 
+                                        Click="Execute_click">
+                                            <Grid>
+                                                <TextBlock Text="Executar" FontWeight="Bold" FontFamily="Segoe Ui Black" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Height="150" Margin="0,20,20,0" VerticalAlignment="Top" HorizontalAlignment="left" Width="292" >
+                        <TextBlock HorizontalAlignment="Left" Text="Funcionalidades" FontFamily="Segoe Ui Black" Foreground="#00B0F0" FontSize="18" Margin="28,31,0,100" Width="150"/>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="0" Margin="272,51,18,577" Grid.RowSpan="2">
+                    <!--<Button 
+                        Style="{DynamicResource CadButton}"
+                        x:Name="CadastrarFunc" 
+                        Margin="-1,0,10,-1" 
+                        Background="Transparent" 
+                        BorderBrush="#FF00B0F0"
+                        CommandParameter="AcessarFunc" 
+                        Command="{Binding ButtonsFunc}">
+                        <Grid>
+                            <TextBlock Text="Cadastrar Funcionalidade" FontWeight="Bold" FontFamily="Segoe Ui Black" Foreground="#FF00B0F0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Button>-->
+                </Grid>
+            </Grid>
+
+            <!--MENU SUPERIOR-->
+            <Grid x:Name="MenuSuperior" Grid.ColumnSpan="2" Background="Transparent" Margin="0,0,0,656" Grid.RowSpan="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{x:Null}">
+                   
+                    <Button x:Name="Sair"  Style="{DynamicResource OffButton}" Width="25" Height="25" Margin="0,0,7,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="Sair_Click">
+                        <iconPacks:PackIconMaterial Kind="Power" Background="Transparent" Width="13"/>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+
+            <!--MENU LATERAL-->
+            <Grid x:Name="MenuLateral" Grid.RowSpan="2">
+                <Grid.Background>
+                    <ImageBrush ImageSource="C:\projetos\SMARTHOME-MASTER\smarthome_v7\aplicacao-smart-home-branch_gabs\SmartHome_WPF\SmartHome_WPF\Resource\lateral.png"/>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Image Source="blue_logo.png" HorizontalAlignment="Right" Width="53" Margin="0,23,185,50"/>
+                <TextBlock HorizontalAlignment="Left" Text="SMART HOME" Foreground="#cfcfcf" FontSize="20" Width="138" Margin="65,32,0,50"/>
+
+                <Line  Grid.Row="0"
+                X1="15" Y1="80"  
+                X2="220" Y2="80"  
+                Stroke="Gray"  
+                StrokeThickness="0.5" />
+
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Username}" Foreground="#cfcfcf" FontSize="18" Width="208" Margin="20,103,0,567" Grid.RowSpan="2"/>
+
+                <Line  Grid.Row="1"
+                X1="15" Y1="35"  
+                X2="220" Y2="35"  
+                Stroke="Gray"  
+                StrokeThickness="0.5" />
+
+                <Rectangle VerticalAlignment="Top" Height="44"  Margin="10,114,26,0" Fill="#FF00B0F0" RadiusX="10" RadiusY="10" Grid.Row="1"/>
+                <StackPanel Grid.Row="1">
+                    <Button x:Name="btnDashboard" Margin="25,60,17,30" Background="Transparent" Height="30" BorderBrush="Transparent" Click="BotaoDashboard" HorizontalAlignment="Left">
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="GaugeFull" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="DASHBOARD" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-20,0" Width="110" />
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnFuncionalidades" Margin="25,0,17,30" Background="Transparent" Height="30" BorderBrush="Transparent"  HorizontalAlignment="Left" >
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="ViewDashboard" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="FUNCIONALIDADES" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-24,0" Width="124"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="btnRelatorios" Margin="25,0,17,30" Background="Transparent" Height="30" BorderBrush="Transparent"  HorizontalAlignment="Left" Click="BotaoRelatorio">
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="ClipboardList" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="RELATÓRIO" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-24,0" Width="124"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnUsuarios" Margin="25,0,17,30" Background="Transparent" Height="30" BorderBrush="Transparent"  HorizontalAlignment="Left" CommandParameter="AcessarUsuarios" Command="{Binding ButtonsFunc}">
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="Account" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="USUÁRIOS" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-24,0" Width="124"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnComodos" Margin="25,0,17,30" Background="Transparent" Height="30" BorderBrush="Transparent"  HorizontalAlignment="Left" CommandParameter="AcessarComodos" Command="{Binding ButtonsFunc}">
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="Home" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="CÔMODOS" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-24,0" Width="124"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnEquipamentos" Margin="25,0,17,30" Background="Transparent" Height="30" BorderBrush="Transparent" HorizontalAlignment="Left" CommandParameter="AcessarEquipamentos" Command="{Binding ButtonsFunc}">
+                        <Grid Width="130" Height="15" >
+                            <iconPacks:PackIconMaterial Kind="AccessPoint" Foreground="White" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Left" Text="EQUIPAMENTOS" FontFamily="Segoe Ui Black" Foreground="White" FontSize="12" Margin="30,0,-24,0" Width="124"/>
+                        </Grid>
+                    </Button>
+
+                </StackPanel>
+
+            </Grid>
+            <!--MENU Inferior-->
+        </Grid>
+
+    </Grid>
+</Window>
